@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>🌤 Weather App</h1>
+
+      <!-- Search Box -->
+      <div class="search-box">
+        <input type="text" id="cityInput" placeholder="Enter city name" />
+        <button id="searchBtn">🔍 Search</button>
+        <button id="locBtn">📍 My Location</button>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls">
+        <button class="toggle-btn active" data-unit="C">°C</button>
+        <button class="toggle-btn" data-unit="F">°F</button>
+      </div>
+
+      <!-- Loading & Error -->
+      <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        Loading weather data...
+      </div>
+      <div id="error" class="error-message hidden"></div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Weather Card -->
+        <div id="weather" class="weather-card">
+          <!-- Weather info will be injected here -->
+        </div>
+
+        <!-- Details Card -->
+        <div id="details" class="details-card hidden">
+          <!-- Additional details injected here -->
+        </div>
+
+        <!-- Forecast Card -->
+        <div id="forecast" class="forecast-card hidden">
+          <!-- 7-day forecast injected here -->
+        </div>
+
+        <!-- Hourly Card -->
+        <div id="hourly" class="hourly-card hidden">
+          <!-- Hourly forecast injected here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Weather Effects -->
+    <div class="weather-effects">
+      <div id="cloud1" class="cloud"></div>
+      <div id="cloud2" class="cloud"></div>
+      <div id="cloud3" class="cloud"></div>
+      <div id="rainContainer"></div>
+      <div id="sun" class="sun"></div>
+    </div>
+
+      <script src="script.js"></script>
+  </body>
+</html>
