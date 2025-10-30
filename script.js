@@ -73,7 +73,7 @@ async function searchWeather(city) {
 async function getWeatherByCoords(lat, lon, cityName = null) {
     try {
         showLoading(true);
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_sum,windspeed_10m_max&hourly=temperature_2m,weathercode&timezone=auto`;
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_sum,windspeed_10m_max&hourly=temperature_2m,weathercode&timezone=Europe/London`;
         const res = await fetch(url);
         
         if(!res.ok) {
@@ -259,49 +259,37 @@ function setBackground(weather){
 /**
  * Animate weather elements
  */
+
 function animateWeather(code){
-    const rainContainer = document.getElementById("rainContainer");
-    const cloud1 = document.getElementById("cloud1");
-    const cloud2 = document.getElementById("cloud2");
-    const cloud3 = document.getElementById("cloud3");
-    const sun = document.getElementById("sun");
+  const rainContainer = document.getElementById("rainContainer");
+  const sun = document.getElementById("sun");
+  const moon = document.getElementById("moon");
 
-    rainContainer.innerHTML = '';
-    cloud1.style.display = 'none';
-    cloud2.style.display = 'none';
-    cloud3.style.display = 'none';
-    sun.style.display = 'none';
+  rainContainer.innerHTML = '';
 
-    if([51,53,55,61,63,65,66,67,80,81,82].includes(code)) {
-        for(let i = 0; i < 5; i++) {
-            const rain = document.createElement('div');
-            rain.className = 'rain';
-            rain.style.left = (i * 20 + 10) + '%';
-            rainContainer.appendChild(rain);
-        }
-        cloud1.style.display = 'block';
-        cloud2.style.display = 'block';
-    } else if([71,73,75,77,85,86].includes(code)) {
-        for(let i = 0; i < 3; i++) {
-            const rain = document.createElement('div');
-            rain.className = 'rain';
-            rain.style.left = (i * 30 + 20) + '%';
-            rainContainer.appendChild(rain);
-        }
-        cloud1.style.display = 'block';
-        cloud3.style.display = 'block';
-    } else if([1,2,3].includes(code)) {
-        cloud1.style.display = 'block';
-        cloud2.style.display = 'block';
-        sun.style.display = 'block';
-    } else if(code === 0) {
-        sun.style.display = 'block';
-    } else {
-        cloud1.style.display = 'block';
-        cloud2.style.display = 'block';
-        cloud3.style.display = 'block';
+  const isDark = document.body.classList.contains("dark-mode");
+
+  if (isDark) {
+    sun.classList.add("hidden");
+    moon.classList.remove("hidden");
+  } else {
+    sun.classList.remove("hidden");
+    moon.classList.add("hidden");
+  }
+
+  // Voeg regen toe bij regenachtige codes
+  const rainCodes = [51, 53, 55, 61, 63, 65, 66, 67, 80, 81, 82];
+  if (rainCodes.includes(code)) {
+    for (let i = 0; i < 10; i++) {
+      const drop = document.createElement("div");
+      drop.classList.add("rain");
+      drop.style.left = `${Math.random() * 100}%`;
+      drop.style.animationDelay = `${Math.random()}s`;
+      rainContainer.appendChild(drop);
     }
+  }
 }
+
 
 /**
  * Show/hide loading spinner
@@ -353,3 +341,24 @@ function getCurrentTimeFormatted() {
         minute: '2-digit'
     });
 }
+
+
+// Start standaard in donkere modus
+document.body.classList.add('dark-mode');
+document.getElementById('sun').classList.add('hidden');
+document.getElementById('moon').classList.remove('hidden');
+
+
+document.getElementById("darkModeToggle").addEventListener("click", () => {
+  const isDark = document.body.classList.toggle("dark-mode");
+  const sun = document.getElementById("sun");
+  const moon = document.getElementById("moon");
+
+  if (isDark) {
+    sun.classList.add("hidden");
+    moon.classList.remove("hidden");
+  } else {
+    sun.classList.remove("hidden");
+    moon.classList.add("hidden");
+  }
+});

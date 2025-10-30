@@ -180,6 +180,37 @@ button:hover {
     max-width: 100%;
 }
 
+.forecast-container {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.forecast-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.forecast-container::-webkit-scrollbar-track {
+  background: #e0f2f1;
+  border-radius: 10px;
+}
+
+.forecast-container::-webkit-scrollbar-thumb {
+  background: #00796b;
+  border-radius: 10px;
+}
+
+.forecast-container::-webkit-scrollbar-thumb:hover {
+  background: #004d40;
+}
+
+.forecast-day {
+  min-width: 100px;
+  flex: 0 0 auto;
+}
+
 .forecast-day {
     background: white;
     padding: 1rem;
@@ -210,6 +241,12 @@ button:hover {
     font-size: 0.95rem;
     color: #333;
 }
+
+
+body.dark-mode .forecast-temp {
+  color: #e0e0e0;
+}
+
 
 .temperature-display {
     display: flex;
@@ -289,39 +326,6 @@ button:hover {
     z-index: 0;
 }
 
-.cloud {
-    position: absolute;
-    background: #fff;
-    border-radius: 50%;
-    opacity: 0.6;
-}
-
-#cloud1 {
-    width: 150px;
-    height: 60px;
-    top: 50px;
-    animation: moveClouds 60s linear infinite;
-}
-
-#cloud2 {
-    width: 120px;
-    height: 50px;
-    top: 150px;
-    animation: moveClouds 80s linear infinite reverse;
-}
-
-#cloud3 {
-    width: 100px;
-    height: 45px;
-    top: 100px;
-    animation: moveClouds 100s linear infinite;
-}
-
-@keyframes moveClouds {
-    0% { transform: translateX(-200px); }
-    100% { transform: translateX(calc(100% + 200px)); }
-}
-
 .rain {
     position: absolute;
     width: 2px;
@@ -358,6 +362,54 @@ button:hover {
     0% { transform: scale(1); }
     100% { transform: scale(1.15); }
 }
+
+
+#moon {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #f0f0f0, #999);
+  top: 20px;
+  right: 30px;
+  box-shadow: 0 0 30px 10px rgba(200, 200, 200, 0.3);
+  animation: moonPulse 3s ease-in-out infinite alternate;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Kraters met box-shadow */
+.moon::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.15);
+  filter: blur(2px);
+  top: 0px;
+  left: 0px;
+
+  /* Meerdere vlekken via box-shadow */
+  box-shadow:
+    30px 30px 0 5px rgba(0, 0, 0, 0.1),
+    60px 35px 0 10px rgba(0, 0, 0, 0.12),
+    90px 60px 0 8px rgba(0, 0, 0, 0.15),
+    20px 90px 0 4px rgba(0, 0, 0, 0.1),
+    100px 100px 0 6px rgba(0, 0, 0, 0.12),
+    20px 70px 0 3px rgba(0, 0, 0, 0.18),
+    70px 130px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+
+@keyframes moonPulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+.hidden {
+  display: none !important;
+}
+
 
 /* Utility classes */
 .error-message {
@@ -690,6 +742,8 @@ body.dark-mode .modal-content {
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
         gap: 0.8rem;
     }
+
+    
     
     .forecast-day {
         padding: 0.8rem;
@@ -707,6 +761,7 @@ body.dark-mode .modal-content {
     }
     
     .forecast-temp {
+    
         font-size: 0.85rem;
     }
     
@@ -860,6 +915,8 @@ body.dark-mode .modal-content {
         grid-template-columns: 1fr;
     }
     
+    
+
     .forecast-day {
         display: grid;
         grid-template-columns: 2fr 1fr 1fr;

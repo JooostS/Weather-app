@@ -12,7 +12,7 @@
 
       <!-- Search Box -->
       <div class="search-box">
-        <input type="text" id="cityInput" placeholder="Enter city name" />
+        <input type="text" id="cityInput" placeholder="Enter city name..." />
         <button id="searchBtn">🔍 Search</button>
         <button id="locBtn">📍 My Location</button>
       </div>
@@ -51,11 +51,9 @@
 
       <!-- Weather Effects -->
       <div class="weather-effects">
-        <div id="cloud1" class="cloud"></div>
-        <div id="cloud2" class="cloud"></div>
-        <div id="cloud3" class="cloud"></div>
         <div id="rainContainer"></div>
         <div id="sun" class="sun"></div>
+        <div id="moon" class="moon hidden"></div>
       </div>
 
        <!-- Controls -->
@@ -63,6 +61,8 @@
         <button class="toggle-btn active" data-unit="C">°C</button>
         <button class="toggle-btn" data-unit="F">°F</button>
       </div>
+
+      <button id="darkModeToggle">🌙 Toggle Dark Mode</button>
     </div>
 
     <script src="script.js"></script>
