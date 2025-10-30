@@ -1,5 +1,5 @@
 # 🌦️ Weather App
-A sleek, responsive weather application that provides real-time weather updates, 7-day forecasts, and hourly predictions using the https://open-meteo.com/. Users can search by city or use their current location to get detailed weather insights.
+A sleek, responsive weather application that provides real-time weather updates, 7-day forecasts, and hourly predictions using the https://open-meteo.com/ API. Users can search by city or use their current location to get detailed weather insights.
 
 # 🚀 Features
 
