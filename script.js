@@ -310,11 +310,6 @@ function showLoading(show) {
     document.getElementById("loading").classList.toggle("hidden", !show);
 }
 
-function showLoading(show) {
-  document.getElementById("loading").classList.toggle("hidden", !show);
-}
-
-
 /**
  * Show/hide error message
  */

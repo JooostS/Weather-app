@@ -27,6 +27,8 @@ body {
     width: 100%;
     z-index: 10;
     backdrop-filter: blur(10px);
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 h1 {
@@ -97,39 +99,19 @@ button:hover {
 }
 
 .main-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 1.5rem;
     margin-bottom: 2rem;
 }
 
-@media (max-width: 1200px) {
-    .main-content {
-        grid-template-columns: 1fr 1fr;
-        gap: 1.5rem;
-    }
-}
-
-@media (max-width: 900px) {
-    .main-content {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-}
-
-
-
-.weather-card, .forecast-card, .details-card {
+.weather-card, .forecast-card, .details-card, .hourly-card {
     padding: 2rem;
     border-radius: 15px;
     background: rgba(241, 248, 247, 0.9);
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     position: relative;
     z-index: 1;
-}
-
-.weather-card {
-    grid-column: 1 / -1;
 }
 
 .weather-card h2 {
@@ -193,8 +175,9 @@ button:hover {
 
 .forecast-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 1rem;
+    max-width: 100%;
 }
 
 .forecast-day {
@@ -257,6 +240,25 @@ button:hover {
     gap: 0.5rem;
     overflow-x: auto;
     padding: 0.5rem 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.hourly-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.hourly-container::-webkit-scrollbar-track {
+    background: #e0f2f1;
+    border-radius: 10px;
+}
+
+.hourly-container::-webkit-scrollbar-thumb {
+    background: #00796b;
+    border-radius: 10px;
+}
+
+.hourly-container::-webkit-scrollbar-thumb:hover {
+    background: #004d40;
 }
 
 .hourly-item {
@@ -285,7 +287,6 @@ button:hover {
     pointer-events: none;
     overflow: hidden;
     z-index: 0;
-    border-radius: 20px;
 }
 
 .cloud {
@@ -318,7 +319,7 @@ button:hover {
 
 @keyframes moveClouds {
     0% { transform: translateX(-200px); }
-    100% { transform: translateX(calc(100vw + 200px)); }
+    100% { transform: translateX(calc(100% + 200px)); }
 }
 
 .rain {
@@ -637,15 +638,6 @@ body.dark-mode .modal-content {
     .toggle-btn {
         padding: 0.6rem 1rem;
         font-size: 0.9rem;
-    }
-    
-    .main-content {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .weather-card {
-        grid-column: 1;
     }
     
     .weather-icon {
@@ -1012,4 +1004,3 @@ input:focus-visible {
 .hourly-container {
   scroll-behavior: smooth;
 }
-

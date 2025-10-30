@@ -17,11 +17,7 @@
         <button id="locBtn">📍 My Location</button>
       </div>
 
-      <!-- Controls -->
-      <div class="controls">
-        <button class="toggle-btn active" data-unit="C">°C</button>
-        <button class="toggle-btn" data-unit="F">°F</button>
-      </div>
+      
 
       <!-- Loading & Error -->
       <div id="loading" class="loading hidden">
@@ -52,17 +48,23 @@
           <!-- Hourly forecast injected here -->
         </div>
       </div>
+
+      <!-- Weather Effects -->
+      <div class="weather-effects">
+        <div id="cloud1" class="cloud"></div>
+        <div id="cloud2" class="cloud"></div>
+        <div id="cloud3" class="cloud"></div>
+        <div id="rainContainer"></div>
+        <div id="sun" class="sun"></div>
+      </div>
+
+       <!-- Controls -->
+      <div class="controls">
+        <button class="toggle-btn active" data-unit="C">°C</button>
+        <button class="toggle-btn" data-unit="F">°F</button>
+      </div>
     </div>
 
-    <!-- Weather Effects -->
-    <div class="weather-effects">
-      <div id="cloud1" class="cloud"></div>
-      <div id="cloud2" class="cloud"></div>
-      <div id="cloud3" class="cloud"></div>
-      <div id="rainContainer"></div>
-      <div id="sun" class="sun"></div>
-    </div>
-
-      <script src="script.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
